@@ -209,12 +209,12 @@
   });
 
 
-  emailjs.init("qg_apK3oNJhws8faU");
+  emailjs.init("YOUR_EMAILJS_USER_ID");
 
   document.addEventListener('DOMContentLoaded', (event) => {
-  var serviceID = 'service_w5kch7h';
-  var templateID = 'template_cp3ag6n';
-  var userID = 'qg_apK3oNJhws8faU';
+  var serviceID = 'YOUR_EMAILJS_SERVICE_ID';
+  var templateID = 'YOUR_EMAILJS_TEMPLATE_ID';
+  var userID = 'YOUR_EMAILJS_PUBLIC_KEY';
   var db = firebase.firestore();
   console.log("email1");
 
@@ -238,7 +238,7 @@
               to_name: data.name,
               to_email: data.email,
               
-              message: "Hi Were thrilled to inform you that youve been selected for an interview! Congratulations on this exciting opportunity!To confirm your attendance for the interview, please click on the link below to fill out the registration form Please make sure to register for the interview to secure your slot. We wish you the best of luck and look forward to seeing you at the interview! Warm regards,Training and Placement Cell Officer Carmel College Of Engineering and Technology"
+              message: "YOUR_MESSAGE"
             }, userID)
             .then(function(response) {
               console.log('SUCCESS!', response.status, response.text);
