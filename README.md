@@ -3,31 +3,31 @@ The College Placement Portal is a web-based application designed to facilitate t
 
 
 
-##Features
+## Features
 
-###Student Dashboard:
-*View and manage student profile.
-*Can access various resources for interview preperations.
-*Can generate resume.(Currently not functional)
-*Receive notifications about upcoming interviews and placement events.
+### Student Dashboard:
+* View and manage student profile.
+* Can access various resources for interview preperations.
+* Can generate resume.(Currently not functional)
+* Receive notifications about upcoming interviews and placement events.
 
-###Admin Panel:
-*Manage student details.
-*Monitor placement activities.
-*Can filter eligible students based on the requirements for interview.
-*Can notify students through email after the filtering about the interviews.
-*Can verify the student details.
+### Admin Panel:
+* Manage student details.
+* Monitor placement activities.
+* Can filter eligible students based on the requirements for interview.
+* Can notify students through email after the filtering about the interviews.
+* Can verify the student details.
 
 
 
 ##Getting Started
-1.Clone the repository:
+1. Clone the repository:
 ```console
 git clone https://github.com/your-username/college-placement-portal.git
 ```
 
 
-2.Go to [firebase](https://firebase.google.com/) and choose firestore and authentication.Then copy the config and update it in the code.
+2. Go to [firebase](https://firebase.google.com/) and choose firestore and authentication.Then copy the config and update it in the code.
 ```js
 const firebaseConfig = {
   apiKey: "YOUR_API_KEY",
@@ -39,7 +39,7 @@ const firebaseConfig = {
 };
 ```
 
-3.Then go to [EmailJs](https://dashboard.emailjs.com/) and create a new account.Then create a new service and template and update the service ID,template ID and public key in the code.
+3. Then go to [EmailJs](https://dashboard.emailjs.com/) and create a new account.Then create a new service and template and update the service ID,template ID and public key in the code.
 ```js
   emailjs.init("YOUR_EMAILJS_USER_ID");
   var serviceID = 'YOUR_EMAILJS_SERVICE_ID';
@@ -47,16 +47,16 @@ const firebaseConfig = {
   var userID = 'YOUR_EMAILJS_PUBLIC_KEY';
 ```
 
-4.Then run the index.html in localhost.
+4. Then run the index.html in localhost.
 
 
 
-##Tech Stack
-*Frontend: HTML, CSS, JavaScript
-*Backend: JavaScript
-*Database: Firestore
-*Authentication: Firebase Authentication
-*Email Services: EmailJS
+## Tech Stack
+* Frontend: HTML, CSS, JavaScript
+* Backend: JavaScript
+* Database: Firestore
+* Authentication: Firebase Authentication
+* Email Services: EmailJS
 
 
 > [!IMPORTANT]
@@ -64,14 +64,14 @@ const firebaseConfig = {
 
 
 
-##Contributing
+## Contributing
 Contributions to the College Placement Portal are welcome! If you find any bugs or have suggestions for new features, please open an issue or submit a pull request.
 
 
 
-##Acknowledgements
-*This project was developed as a college mini project.
-*I do understand that it is a basic one and may have many flaws in it.
+## Acknowledgements
+* This project was developed as a college mini project.
+* I do understand that it is a basic one and may have many flaws in it.
 
 
 
