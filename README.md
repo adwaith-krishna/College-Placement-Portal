@@ -20,7 +20,7 @@ The College Placement Portal is a web-based application designed to facilitate t
 
 
 
-##Getting Started
+## Getting Started
 1. Clone the repository:
 ```console
 git clone https://github.com/your-username/college-placement-portal.git
