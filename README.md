@@ -75,4 +75,4 @@ Contributions to the College Placement Portal are welcome! If you find any bugs 
 
 
 
-**Kudos to [Rahul Mane](https://github.com/rahu1mane) and Ajmal for working on the design and frontend.**
+**Kudos to [Rahul](https://github.com/rahu1mane) and [Ajmal](https://github.com/mohd007ajmal) for working on the design and frontend.**
