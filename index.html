@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>College Placement Cell Management System</title>
+    <!-- Font Awesome CDN for icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <!-- Stylesheet -->
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f2f2f2;
+      }
+      header {
+        background-color: #333;
+        color: #fff;
+        padding: 10px 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .logo {
+        display: flex;
+        align-items: center;
+      }
+      .logo img {
+        max-width: 50px;
+        margin-right: 10px;
+      }
+      .site-name {
+        font-family: "Macondo Pro Regular", cursive;
+        font-size: 24px;
+      }
+      .container {
+        max-width: 1440px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f2f2f2; /* Changed background color */
+      }
+      h1,
+      h2,
+      p {
+        text-align: center;
+        color: #333;
+      }
+      .btn {
+        display: block;
+        width: 150px;
+        margin: 0 auto 20px;
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+        text-align: center; /* Align text to center */
+      }
+      .btn:hover {
+        background-color: #0056b3;
+      }
+      .feature {
+        margin-top: 30px;
+        padding: 20px;
+        background-color: #f9f9f9;
+        border-radius: 5px;
+      }
+      .feature h2 {
+        color: #007bff;
+      }
+      .feature p {
+        color: #666;
+      }
+      footer {
+        margin-top: 50px;
+        background-color: #f4f3fa;
+        text-align: center;
+        padding: 20px 0;
+      }
+
+      footer .footer-content h3 {
+        color: #007bff; /* Changed text color to match the color used in features */
+      }
+
+      /* Style for the box bubble */
+      .box-bubble {
+        background-image: url("your-image.jpg"); /* Replace 'your-image.jpg' with the path to your background image */
+        background-size: cover;
+        background-position: center;
+        border-radius: 10px;
+        padding: 20px;
+        margin-top: 50px;
+        color: white; /* Changed text color to white for better contrast */
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="logo">
+        <img src="logo.svg" alt="Logo" />
+        <span class="site-name">CareerForge</span>
+      </div>
+    </header>
+
+    <div id="notificationPopup" style="display: none">
+      <h2>Notifications</h2>
+      <!-- Add your notification content here -->
+      <p>test</p>
+      <p>test</p>
+      <p>test</p>
+      <p>test</p>
+    </div>
+
+    <div class="container">
+      <!-- Welcome introduction in the box bubble -->
+      <div class="box-bubble">
+        <h1>Welcome to CareerForge</h1>
+        <p>
+          The proposed system is an innovative, web-based College Placement Cell
+          Management System. This system is specifically designed to streamline
+          and enhance the placement process in engineering colleges, making it
+          more efficient and effective.
+        </p>
+        <a href="login.html" class="btn">Join Us</a>
+      </div>
+
+      <!-- Features section -->
+      <div class="features">
+        <div class="feature" id="feature1">
+          <h2>Automatic Notification</h2>
+          <p>
+            The students who are selected for an interview receive a
+            notification in the form of an email or text message automatically.
+            This ensures timely communication and allows students to prepare
+            well for their interviews.
+          </p>
+        </div>
+
+        <div class="feature" id="feature2">
+          <h2>Interactive Interface</h2>
+          <p>
+            The system provides an interactive interface for students, allowing
+            them to update their profile, post their achievements, and showcase
+            their skills and bio. This feature enables students to maintain an
+            up-to-date profile that can be easily accessed by recruiting
+            companies.
+          </p>
+        </div>
+
+        <div class="feature" id="feature3">
+          <h2>Mock Interview Preparation</h2>
+          <p>
+            The platform offers various quizzes, aptitude tests, and mock
+            interview Q/A to help students prepare better for their interviews.
+            It provides mock tests based on the company's nature, designed to
+            increase students
+          </p>
+        </div>
+
+        <div class="feature" id="feature4">
+          <h2>CV Generation</h2>
+          <p>
+            The system includes a built-in CV generation functionality. Students
+            can choose from predefined CV templates available within the system,
+            which automatically populate with their profile information. This
+            empowers students to efficiently create professional CVs, enhancing
+            their preparation for job interviews.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <div class="footer-content">
+        <img src="logo.svg" alt="Logo" />
+        <h3>CareerForge</h3>
+        <p>Contact: info@careerforge.com</p>
+        <p>Services: College Placement Cell Management</p>
+      </div>
+      <p>&copy; 2024 CareerForge. All rights reserved.</p>
+    </footer>
+
+    <script>
+      // Get the notification icon and popup
+      var notificationIcon = document.querySelector(".notification-icon");
+      var notificationPopup = document.getElementById("notificationPopup");
+
+      // Add event listener to the notification icon
+      notificationIcon.addEventListener("click", function () {
+        // Toggle the display of the popup
+        if (notificationPopup.style.display === "none") {
+          notificationPopup.style.display = "block";
+        } else {
+          notificationPopup.style.display = "none";
+        }
+      });
+    </script>
+  </body>
+</html>

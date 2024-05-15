@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-firestore.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@2/dist/email.min.js"></script>
+
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Details</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f0f0f0;
+      }
+      .container {
+        max-width: 800px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+      }
+      th,
+      td {
+        padding: 10px;
+        border-bottom: 1px solid #ddd;
+        text-align: left;
+      }
+      th {
+        background-color: #f2f2f2;
+      }
+      .button-container {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+      }
+      .button-container input[type="button"] {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      .save-button {
+        background-color: #28a745;
+        color: #fff;
+      }
+      .send-email-button {
+        background-color: #007bff;
+        color: #fff;
+      }
+      .save-button:hover {
+        background-color: #218838;
+      }
+      .send-email-button:hover {
+        background-color: #0056b3;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Qualified Students</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>CGPA</th>
+            <th>Backlogs</th>
+            <th>Email</th>
+            <th>Phone Number</th>
+          </tr>
+        </thead>
+        <tbody id="studentTable">
+          <!-- Student details will be inserted here dynamically -->
+        </tbody>
+      </table>
+      <div class="button-container">
+        <input type="button" class="send-email-button" id="sendEmail" value="Send EMail" />
+        <input type="button" class="save-button" id="done" value="Done" />
+      </div>
+    </div>
+
+    <script>
+      const firebaseConfig = {
+        apiKey: "AIzaSyCPJI8liIUtrAJlGUbxSsN-klKgB4m33zA",
+        authDomain: "placement-59c18.firebaseapp.com",
+        databaseURL: "https://placement-59c18-default-rtdb.firebaseio.com",
+        projectId: "placement-59c18",
+        storageBucket: "placement-59c18.appspot.com",
+        messagingSenderId: "466628059164",
+        appId: "1:466628059164:web:65ba61bf7db4558d09ffd9",
+        measurementId: "G-QK7B6WMH8W",
+      };
+
+      firebase.initializeApp(firebaseConfig);
+
+      
+
+
+
+
+  var db = firebase.firestore();
+
+  var backlogs = localStorage.getItem('backlogs');
+
+  db.collection("cgpafilter")
+    .where("backlog", "<=", backlogs)
+    .get()
+    .then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        var data = doc.data();
+
+        
+
+
+        var tr = document.createElement('tr');
+
+    
+        var nameTd = document.createElement('td');
+        var cgpaTd = document.createElement('td');
+        var backlogTd = document.createElement('td');
+        var emailTd = document.createElement('td');
+        var phoneTd = document.createElement('td');
+
+        nameTd.textContent = data.name;
+        cgpaTd.textContent = data.cgpa;
+        backlogTd.textContent = data.backlog;
+        emailTd.textContent = data.email;
+        phoneTd.textContent = data.phone;
+
+        var name = data.name;
+        var email = data.email;
+        var backlog = data.backlog;
+        var cgpa = data.cgpa;
+        var phone = data.phone;
+
+
+        db.collection("finalfilter").add({
+        name: name,
+        email: email,
+        backlog: backlog,
+        cgpa: cgpa,
+        phone: phone
+      })
+      .then((docRef) => {
+        console.log("Document written with ID: ", docRef.id);
+      })
+      .catch((error) => {
+        console.error("Error adding document: ", error);
+      });
+
+
+
+        tr.appendChild(nameTd);
+        tr.appendChild(cgpaTd);
+        tr.appendChild(backlogTd);
+        tr.appendChild(emailTd);
+        tr.appendChild(phoneTd);
+
+        
+
+
+        document.getElementById('studentTable').appendChild(tr);
+      });
+    })
+    .catch((error) => {
+      console.error("Error getting documents: ", error);
+    });
+
+
+
+    document.getElementById("done").addEventListener("click", function () {
+
+    db.collection("finalfilter").get().then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        db.collection("finalfilter").doc(doc.id).delete().then(() => {
+          console.log("Document successfully deleted!");
+        }).catch((error) => {
+          console.error("Error removing document: ", error);
+        });
+      });
+    });
+
+
+    db.collection("cgpafilter").get().then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        db.collection("cgpafilter").doc(doc.id).delete().then(() => {
+          console.log("Document successfully deleted!");
+
+          var delay = 4000;
+          setTimeout(function() {
+            window.location.href = "adminprofile.html";
+          }, delay);
+          
+        }).catch((error) => {
+          console.error("Error removing document: ", error);
+        });
+      });
+    });
+  });
+
+
+  emailjs.init("qg_apK3oNJhws8faU");
+
+  document.addEventListener('DOMContentLoaded', (event) => {
+  var serviceID = 'service_w5kch7h';
+  var templateID = 'template_cp3ag6n';
+  var userID = 'qg_apK3oNJhws8faU';
+  var db = firebase.firestore();
+  console.log("email1");
+
+
+  var sendMailButton = document.getElementById('sendEmail');
+  if (sendMailButton) {
+    sendMailButton.addEventListener('click', function() {
+      console.log("button");
+
+      db.collection("finalfilter")
+        .get()
+        .then((querySnapshot) => {
+          querySnapshot.forEach((doc) => {
+            var data = doc.data();
+            console.log("email2");
+            console.log("Name1: ", data.name);
+      console.log("Email1: ", data.email);
+
+            emailjs.send(serviceID, templateID, {
+              
+              to_name: data.name,
+              to_email: data.email,
+              
+              message: "Hi Were thrilled to inform you that youve been selected for an interview! Congratulations on this exciting opportunity!To confirm your attendance for the interview, please click on the link below to fill out the registration form Please make sure to register for the interview to secure your slot. We wish you the best of luck and look forward to seeing you at the interview! Warm regards,Training and Placement Cell Officer Carmel College Of Engineering and Technology"
+            }, userID)
+            .then(function(response) {
+              console.log('SUCCESS!', response.status, response.text);
+              alert("Email sent Successfully");
+            }, function(error) {
+              console.log('FAILED...', error);
+            });
+          });
+        })
+        .catch((error) => {
+          console.error("Error getting documents: ", error);
+        });
+    });
+  }
+});
+
+
+
+
+
+  
+
+    </script>
+
+      
+
+  </body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Profile Page</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #e4e4e4;
+  }
+  .container {
+    display: flex;
+    height: 100vh;
+    justify-content: center; /* Center the sidebar horizontally */
+  }
+  .sidebar {
+    width: 250px; /* Increased size by 1.25 times */
+    background-color: #333;
+    padding: 20px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Align buttons to the left */
+    justify-content: flex-start; /* Align buttons to the top */
+  }
+  .sidebar ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  .sidebar ul li {
+    margin-bottom: 25px; /* Increased margin-bottom */
+  }
+  .sidebar ul li a {
+    text-decoration: none;
+    color: white;
+    display: block;
+    font-size: 20px; /* Adjusted font size */
+    padding: 15px; /* Added padding */
+    transition: background-color 0.3s; /* Smooth hover effect */
+  }
+  .sidebar ul li a:hover {
+    background-color: #555; /* Darker background on hover */
+  }
+  .content {
+    flex: 1;
+    padding: 20px;
+    background-color: #ffffff;
+    position: relative;
+    background-image: url('https://mrakgpp.edu.in/wp-content/uploads/2022/04/TPO.jpg');
+    background-size: cover;
+    background-position: center;
+  }
+  .horizontal-block {
+    background-color: #333;
+    height: 60px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0 20px;
+    box-sizing: border-box;
+  }
+  .profile-icon {
+    width: 40px;
+    height: 40px;
+    background-image: url("https://www.flaticon.com/svg/static/icons/svg/3135/3135715.svg");
+    background-size: cover;
+    margin-right: 20px;
+  }
+  .welcome-message {
+    color: white;
+    font-size: 24px; /* Increased font size */
+    margin-right: auto;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="sidebar">
+    <h1 style="font-size: 30px; margin-bottom: 20px;">Admin Dashboard</h1> <!-- Bigger title -->
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="notification.html">Notification</a></li>
+      <li><a href="filter.html">Student Filtering</a></li>
+      <li><a href="#">Student Data Verification</a></li>
+      <li><a href="index.html">Logout</a></li>
+    </ul>
+  </div>
+  <div class="content">
+    <div class="horizontal-block">
+      <div class="profile-icon"></div>
+      <h2 class="welcome-message">Welcome!</h2>
+    </div>
+  </div>
+</div>
+
+
+</body>
+</html>

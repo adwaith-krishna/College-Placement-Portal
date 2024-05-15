@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-database.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-firestore.js"></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profile Page</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #e4e4e4;
+      }
+      .container {
+        display: flex;
+        height: 100vh;
+      }
+      .sidebar {
+        width: 200px;
+        background-color: #333;
+        padding: 20px;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start; /* Align buttons to the left */
+        justify-content: flex-start; /* Align buttons to the top */
+      }
+      .sidebar ul {
+        list-style-type: none;
+        padding: 0;
+      }
+      .sidebar ul li {
+        margin-bottom: 20px; /* Increased spacing between buttons */
+      }
+      .sidebar ul li a {
+        text-decoration: none;
+        color: white;
+        padding: 10px 20px; /* Added padding */
+        display: block; /* Make buttons block-level for full width */
+      }
+      .content {
+        flex: 1;
+        padding: 20px;
+        background-color: #ffffff;
+        position: relative;
+      }
+      .horizontal-block {
+        background-color: #333;
+        height: 196px; /* Increased height by 20px */
+        position: absolute;
+        top: 100px; /* Below 100px from the top */
+        left: 220px; /* Start at the end of the margin */
+        right: 0;
+        display: flex;
+        align-items: center;
+        padding: 0 20px;
+        box-sizing: border-box;
+      }
+      .profile-icon {
+        width: 40px; /* Adjusted width */
+        height: 40px; /* Adjusted height */
+        background-image: url("https://www.flaticon.com/svg/static/icons/svg/3135/3135715.svg"); /* Profile icon from Flaticon */
+        background-size: cover;
+        margin-right: 20px; /* Increased margin-right */
+      }
+      .welcome-message {
+        color: white;
+        font-size: 24px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="sidebar">
+        <ul>
+          <li><a href="home.html">Home</a></li>
+          <li><a href="userprofile.html">Profile</a></li>
+          <li><a href="#">Notification</a></li>
+          <li><a href="#">CV Generation</a></li>
+          <li><a href="#">Training</a></li>
+          <li><a href="index.html">Logout</a></li>
+        </ul>
+      </div>
+      <div class="content">
+        <div class="content">
+            <h2>Student Details</h2>
+            <p><strong>Name:</strong> <span id="studentName"></span></p>
+            <p><strong>Branch:</strong> <span id="studentBranch"></span></p>
+            <p><strong>Semester:</strong> <span id="studentSemester"></span></p>
+            <p><strong>Department:</strong> <span id="studentDepartment"></span></p>
+            <p><strong>Date of Birth:</strong> <span id="studentDob"></span></p>
+            <p><strong>Register Number:</strong> <span id="studentRegisterNumber"></span></p>
+            <p><strong>Admission Number:</strong> <span id="studentAdmissionNumber"></span></p>
+            <p><strong>Skills:</strong> <span id="studentSkills"></span></p>
+            <p><strong>Achievements:</strong> <span id="studentAchievements"></span></p>
+            <p><strong>Mobile Number:</strong> <span id="studentMobileNumber"></span></p>
+            <p><strong>Email:</strong> <span id="studentEmail"></span></p>
+          </div>
+        <!-- Profile details go here -->
+      </div>
+    </div>
+
+    <script>
+
+
+// Initialize Firebase
+const firebaseConfig = {
+  apiKey: "AIzaSyCPJI8liIUtrAJlGUbxSsN-klKgB4m33zA",
+  authDomain: "placement-59c18.firebaseapp.com",
+  projectId: "placement-59c18",
+  storageBucket: "placement-59c18.appspot.com",
+  messagingSenderId: "466628059164",
+  appId: "1:466628059164:web:65ba61bf7db4558d09ffd9",
+  measurementId: "G-QK7B6WMH8W"
+};
+firebase.initializeApp(firebaseConfig);
+
+var db = firebase.firestore();
+
+
+var email = localStorage.getItem('username');
+
+
+console.log(email);
+
+
+
+
+db.collection('studentDetails').where('email', '==', email).get().then((querySnapshot) => {
+  querySnapshot.forEach((doc) => {
+
+    console.log(doc.id, " => ", doc.data());
+
+    var data = doc.data();
+
+    document.getElementById('studentName').textContent = data.name;
+    document.getElementById('studentBranch').textContent = data.branch;
+    document.getElementById('studentSemester').textContent = data.semester;
+    document.getElementById('studentDepartment').textContent = data.department;
+    document.getElementById('studentDob').textContent = data.dob;
+    document.getElementById('studentRegisterNumber').textContent = data.registerNumber;
+    document.getElementById('studentAdmissionNumber').textContent = data.admissionNumber;
+    document.getElementById('studentSkills').textContent = data.skills;
+    document.getElementById('studentAchievements').textContent = data.achievements;
+    document.getElementById('studentMobileNumber').textContent = data.mobileNumber;
+    document.getElementById('studentEmail').textContent = data.email;
+
+  });
+}).catch((error) => {
+  console.log("Error getting documents: ", error);
+});
+    </script>
+    
+  </body>
+</html>

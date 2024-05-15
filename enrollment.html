@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-firestore.js"></script>
+    <!-- Design by foolishdeveloper.com -->
+    <title>Enrollment Form</title>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:
+      wght@300;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <!--Stylesheet-->
+    <style media="screen">
+      *,
+      *:before,
+      *:after {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+      body {
+        background-color: #080710;
+        overflow-y: auto;
+        margin: 0;
+      }
+      .background {
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: -1;
+      }
+      .background .shape {
+        height: 200px;
+        width: 200px;
+        position: absolute;
+        border-radius: 50%;
+      }
+      .shape:first-child {
+        background: linear-gradient(#1845ad, #23a2f6);
+        left: -80px;
+        top: -80px;
+      }
+      .shape:last-child {
+        background: linear-gradient(to right, #ff512f, #f09819);
+        right: -30px;
+        bottom: -80px;
+      }
+      form {
+        width: 800px;
+        background-color: rgba(255, 255, 255, 0.13);
+        position: absolute;
+        transform: translate(-50%, -50%);
+        top: calc(50% + 150px);
+        left: 50%;
+        border-radius: 10px;
+        backdrop-filter: blur(10px);
+        border: 2px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
+        padding: 50px 35px;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+      }
+      form * {
+        font-family: "Poppins", sans-serif;
+        color: #ffffff;
+        letter-spacing: 0.5px;
+        outline: none;
+        border: none;
+      }
+      form h3 {
+        font-size: 32px;
+        font-weight: 500;
+        line-height: 42px;
+        text-align: center;
+        grid-column: 1 / -1;
+      }
+
+      label {
+        display: block;
+        margin-top: 30px;
+        font-size: 16px;
+        font-weight: 500;
+      }
+      input,
+      select {
+        display: block;
+        height: 50px;
+        width: 100%;
+        background-color: rgba(255, 255, 255, 0.07);
+        border-radius: 3px;
+        padding: 0 10px;
+        margin-top: 8px;
+        font-size: 14px;
+        font-weight: 300;
+        color: #ffffff;
+      }
+      select option {
+        background-color: #1f1f1f;
+        color: #ffffff;
+      }
+      ::placeholder {
+        color: #e5e5e5;
+      }
+      button {
+        margin-top: 30px;
+        width: 100%;
+        background-color: #ffffff;
+        color: #080710;
+        padding: 15px 0;
+        font-size: 18px;
+        font-weight: 600;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="background">
+      <div class="shape"></div>
+      <div class="shape"></div>
+    </div>
+    <form id="enrollmentForm">
+      <h3>Enrollment Form</h3>
+
+      <div>
+        <label for="name">Name</label>
+        <input type="text" placeholder="Name" id="name" />
+
+        <label for="branch">Year</label>
+        <select id="branch">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+        </select>
+
+        <label for="semester">Semester</label>
+        <select id="semester">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+        </select>
+
+        <label for="department">Department</label>
+        <select id="department">
+          <option value="CIVIL">Civil Engineering</option>
+          <option value="MECH">Mechanical Engineering</option>
+          <option value="EEE">Electrical & Electronics Engineering</option>
+          <option value="CSE">Computer Science & Engineering</option>
+        </select>
+
+        <label for="dob">Date of Birth</label>
+        <input type="date" id="dob" />
+
+        <label for="cgpa">CGPA</label>
+        <input
+          type="number"
+          min="0"
+          max="10"
+          step="0.01"
+          placeholder="CGPA"
+          id="cgpa"
+        />
+
+        <label for="backlog">Backlogs</label>
+        <input type="number" min="0" placeholder="Backlogs" id="backlog" />
+      </div>
+
+      <div>
+        <label for="register_number">Register Number</label>
+        <input type="text" placeholder="Register Number" id="register_number" />
+
+        <label for="admission_number">Admission Number</label>
+        <input
+          type="text"
+          placeholder="Admission Number"
+          id="admission_number"
+        />
+
+        <label for="skills">Skills</label>
+        <input type="text" placeholder="Skills" id="skills" />
+
+        <label for="achievements">Achievements</label>
+        <input type="text" placeholder="Achievements" id="achievements" />
+
+        <label for="password">Password</label>
+        <input type="password" placeholder="Password" id="password" />
+
+        <label for="mobile_number">Mobile Number</label>
+        <input type="text" placeholder="Mobile Number" id="mobile_number" />
+
+        <label for="email">Email</label>
+        <input type="email" placeholder="Email" id="email" />
+      </div>
+
+      <button type="submit">Enroll</button>
+    </form>
+
+    <script>
+      // Initialize Firebase
+      const firebaseConfig = {
+        apiKey: "AIzaSyCPJI8liIUtrAJlGUbxSsN-klKgB4m33zA",
+        authDomain: "placement-59c18.firebaseapp.com",
+        databaseURL: "https://placement-59c18-default-rtdb.firebaseio.com",
+        projectId: "placement-59c18",
+        storageBucket: "placement-59c18.appspot.com",
+        messagingSenderId: "466628059164",
+        appId: "1:466628059164:web:65ba61bf7db4558d09ffd9",
+        measurementId: "G-QK7B6WMH8W",
+      };
+      firebase.initializeApp(firebaseConfig);
+
+      var nameInput = document.getElementById("name");
+      var branchInput = document.getElementById("branch");
+      var semesterInput = document.getElementById("semester");
+      var departmentInput = document.getElementById("department");
+      var dobInput = document.getElementById("dob");
+      var registerNumberInput = document.getElementById("register_number");
+      var admissionNumberInput = document.getElementById("admission_number");
+      var skillsInput = document.getElementById("skills");
+      var achievementsInput = document.getElementById("achievements");
+      var passwordInput = document.getElementById("password");
+      var mobileNumberInput = document.getElementById("mobile_number");
+      var emailInput = document.getElementById("email");
+      var cgpaInput = document.getElementById("cgpa");
+      var backlogInput = document.getElementById("backlog");
+
+      var enrollmentForm = document.getElementById("enrollmentForm");
+
+      enrollmentForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        var name = nameInput.value;
+        var branch = branchInput.value;
+        var semester = semesterInput.value;
+        var department = departmentInput.value;
+        var dob = dobInput.value;
+        var registerNumber = registerNumberInput.value;
+        var admissionNumber = admissionNumberInput.value;
+        var skills = skillsInput.value;
+        var achievements = achievementsInput.value;
+        var password = passwordInput.value;
+        var mobileNumber = mobileNumberInput.value;
+        var email = emailInput.value;
+        var cgpa = cgpaInput.value;
+        var backlog = backlogInput.value;
+
+        firebase
+          .firestore()
+          .collection("studentDetails")
+          .add({
+            name: name,
+            branch: branch,
+            semester: semester,
+            department: department,
+            dob: dob,
+            registerNumber: registerNumber,
+            admissionNumber: admissionNumber,
+            skills: skills,
+            achievements: achievements,
+            password: password,
+            mobileNumber: mobileNumber,
+            email: email,
+            cgpa: cgpa,
+            backlog: backlog,
+          })
+          .then((docRef) => {
+            console.log("Document written with ID: ", docRef.id);
+            firebase
+              .auth()
+              .createUserWithEmailAndPassword(email, password)
+              .then((userCredential) => {
+
+                console.log("User created with ID: ", userCredential.user.uid);
+                alert("Data saved successfully!");
+
+                window.location.href = "login.html";
+              })
+              .catch((error) => {
+                console.error("Error creating user: ", error);
+              });
+          })
+          .catch((error) => {
+            console.error("Error adding document: ", error);
+          });
+
+          var delay = 5000;
+          setTimeout(function() {
+            window.location.href = "login.html";
+          }, delay);
+      });
+    </script>
+  </body>
+</html>

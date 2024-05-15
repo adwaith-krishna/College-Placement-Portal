@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-firestore.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Verification Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            color: #007bff;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+            color: #333;
+        }
+        input[type="button"] {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        input[type="button"]:hover {
+            background-color: #0056b3;
+        }
+        input[type="text"] {
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            width: 100%;
+            box-sizing: border-box;
+            transition: border-color 0.3s;
+        }
+        input[type="text"]:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Student Verification</h2>
+        <table id="studentTable">
+            <thead>
+                <tr>
+                    <th>NAME</th>
+                    <th>ADMISSION NUMBER</th>
+                    <th>CGPA</th>
+                    <th>BACKLOGS</th>
+                    <th>PHONE</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Student details will be dynamically inserted here -->
+            </tbody>
+        </table>
+    </div>
+
+
+    <script>
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCPJI8liIUtrAJlGUbxSsN-klKgB4m33zA",
+  authDomain: "placement-59c18.firebaseapp.com",
+  projectId: "placement-59c18",
+  storageBucket: "placement-59c18.appspot.com",
+  messagingSenderId: "466628059164",
+  appId: "1:466628059164:web:65ba61bf7db4558d09ffd9",
+  measurementId: "G-QK7B6WMH8W"
+};
+firebase.initializeApp(firebaseConfig);
+
+
+  var db = firebase.firestore();
+
+  db.collection("studentDetails")
+    .get()
+    .then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        var data = doc.data();
+
+ 
+        var tr = document.createElement('tr');
+
+        var nameTd = document.createElement('td');
+        var admissionNumberTd = document.createElement('td');
+        var cgpaTd = document.createElement('td');
+        var backlogsTd = document.createElement('td');
+        var phoneTd = document.createElement('td');
+
+
+        nameTd.textContent = data.name;
+        admissionNumberTd.textContent = data.admissionNumber;
+        cgpaTd.textContent = data.cgpa;
+        backlogsTd.textContent = data.backlog;
+        phoneTd.textContent = data.mobileNumber;
+
+
+        tr.appendChild(nameTd);
+        tr.appendChild(admissionNumberTd);
+        tr.appendChild(cgpaTd);
+        tr.appendChild(backlogsTd);
+        tr.appendChild(phoneTd);
+
+  
+        document.getElementById('studentTable').appendChild(tr);
+      });
+    })
+    .catch((error) => {
+      console.error("Error getting documents: ", error);
+    });
+
+    
+    </script>
+</body>
+</html>
