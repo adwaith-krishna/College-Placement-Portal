@@ -51,17 +51,18 @@ const firebaseConfig = {
 
 
 
+> [!IMPORTANT]
+> Do note that it should be running in localhost for the EMail service to work.
+
+
+
+
 ## Tech Stack
 * Frontend: HTML, CSS, JavaScript
 * Backend: JavaScript
 * Database: Firestore
 * Authentication: Firebase Authentication
 * Email Services: EmailJS
-
-
-> [!IMPORTANT]
-> Do note that it should be running in localhost for the EMail service to work.
-
 
 
 ## Contributing
